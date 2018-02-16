@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">TextBeautifier</string>
+    <string name="ugly_text">UGLY TEXT</string>
+    <string name="beautiful_text">BEAUTIFUL TEXT</string>
+</resources>

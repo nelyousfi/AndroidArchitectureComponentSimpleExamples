@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="personal">#f98e7b</color>
+    <color name="personalBackground">#feeeeb</color>
+    <color name="work">#75b9f0</color>
+    <color name="workBackground">#eaf5fd</color>
+    <color name="meeting">#d29b2c</color>
+    <color name="meetingBackground">#f7edd9</color>
+    <color name="home">#729948</color>
+    <color name="homeBackground">#eaf0e4</color>
+    <color name="sport">#64798a</color>
+    <color name="sportBackground">#e9ecee</color>
+    <color name="other">#ffbb2c</color>
+    <color name="otherBackground">#fbeed4</color>
+    <color name="editTextBackground">#eb4c4c</color>
+    <color name="buttonBackground">#8dd119</color>
+    <color name="gray">#f5f5f5</color>
+</resources>

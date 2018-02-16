@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">CurrencyConverter</string>
+    <string name="dollar_symbol">$</string>
+    <string name="us_dollar">US DOLLAR</string>
+</resources>
