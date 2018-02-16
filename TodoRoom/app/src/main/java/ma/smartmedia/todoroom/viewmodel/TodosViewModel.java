@@ -32,4 +32,12 @@ public class TodosViewModel extends AndroidViewModel {
         dataRepository.insertTodo(todo);
     }
 
+    public void deleteTodo(TodoEntity todo) {
+        dataRepository.deleteTodo(todo);
+    }
+
+    public void moveToDone(TodoEntity todo) {
+        todo.setDone(true);
+        dataRepository.update(todo);
+    }
 }

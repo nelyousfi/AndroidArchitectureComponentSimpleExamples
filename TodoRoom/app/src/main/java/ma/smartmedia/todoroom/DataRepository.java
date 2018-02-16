@@ -49,4 +49,22 @@ public class DataRepository {
             }
         });
     }
+
+    public void deleteTodo(final TodoEntity todo) {
+        new AppExecutors().diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                database.todoDao().delete(todo);
+            }
+        });
+    }
+
+    public void update(final TodoEntity todo) {
+        new AppExecutors().diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                database.todoDao().update(todo);
+            }
+        });
+    }
 }

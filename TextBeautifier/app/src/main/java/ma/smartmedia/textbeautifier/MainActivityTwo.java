@@ -46,13 +46,7 @@ public class MainActivityTwo extends AppCompatActivity {
         };
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         viewModel = ViewModelProviders.of(this).get(MyViewModel.class);
-        LiveData<String> awesomeData = Transformations.map(viewModel.getText(), new Function<String, String>() {
-            @Override
-            public String apply(String input) {
-                return "~> " + input;
-            }
-        });
-        awesomeData.observe(this, new Observer<String>() {
+        viewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 convertToHtml(s);

@@ -6,5 +6,6 @@ package ma.smartmedia.todoroom.model;
 public interface Todo {
     int getId();
     String getTitle();
+    boolean isDone();
     int getCategoryId();
 }

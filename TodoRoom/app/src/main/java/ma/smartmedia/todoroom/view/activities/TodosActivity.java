@@ -34,6 +34,7 @@ public class TodosActivity extends AppCompatActivity implements TodoCallback {
     private FloatingActionButton btnBottomSheet;
     private TodosViewModel viewModel;
     private CategoryEntity category;
+    private ImageView sadImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,11 @@ public class TodosActivity extends AppCompatActivity implements TodoCallback {
             @Override
             public void onChanged(@Nullable List<TodoEntity> todos) {
                 setTodosList(category, todos);
+                if (todos.size() > 0) {
+                    hideSadFace();
+                } else {
+                    showSadFace();
+                }
             }
         });
     }
@@ -74,6 +80,7 @@ public class TodosActivity extends AppCompatActivity implements TodoCallback {
 
     private void initViews() {
         todosRecyclerView = findViewById(R.id.todos_recycler_view);
+        sadImageView = findViewById(R.id.sad_image_view);
     }
 
     private void initBottomSheet() {
@@ -93,6 +100,8 @@ public class TodosActivity extends AppCompatActivity implements TodoCallback {
             public void onClick(View view) {
                 String title = todoEditText.getText().toString();
                 viewModel.addTodo(new TodoEntity(title, category.getId()));
+                todoEditText.setText("");
+                sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
             }
         });
         sheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
@@ -119,6 +128,14 @@ public class TodosActivity extends AppCompatActivity implements TodoCallback {
         });
     }
 
+    private void showSadFace() {
+        sadImageView.setVisibility(View.VISIBLE);
+    }
+
+    private void hideSadFace() {
+        sadImageView.setVisibility(View.GONE);
+    }
+
     private void setTodosList(CategoryEntity category, List<TodoEntity> todos) {
         TodosAdapter adapter = new TodosAdapter(category, todos, this);
         todosRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -127,6 +144,11 @@ public class TodosActivity extends AppCompatActivity implements TodoCallback {
 
     @Override
     public void onClick(TodoEntity todo) {
+        viewModel.moveToDone(todo);
+    }
 
+    @Override
+    public void onDelete(TodoEntity todo) {
+        viewModel.deleteTodo(todo);
     }
 }

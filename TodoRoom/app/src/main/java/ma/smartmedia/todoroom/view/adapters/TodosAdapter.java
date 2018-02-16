@@ -1,9 +1,11 @@
 package ma.smartmedia.todoroom.view.adapters;
 
+import android.graphics.Paint;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -40,11 +42,23 @@ public class TodosAdapter extends RecyclerView.Adapter<TodosAdapter.TodoViewHold
     public void onBindViewHolder(TodoViewHolder holder, int position) {
         final TodoEntity todo = todos.get(position);
         holder.nameTextView.setText(todo.getTitle());
+        if (todo.isDone()) {
+            holder.nameTextView
+                    .setPaintFlags(
+                            holder.nameTextView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG
+                    );
+        }
         holder.categoryTextView.setText(category.getName());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 callback.onClick(todo);
+            }
+        });
+        holder.removeImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                callback.onDelete(todo);
             }
         });
     }
@@ -57,11 +71,13 @@ public class TodosAdapter extends RecyclerView.Adapter<TodosAdapter.TodoViewHold
     static class TodoViewHolder extends RecyclerView.ViewHolder {
 
         TextView nameTextView, categoryTextView;
+        ImageView removeImageView;
 
         TodoViewHolder(View view) {
             super(view);
             nameTextView = view.findViewById(R.id.name_text_view);
             categoryTextView = view.findViewById(R.id.category_text_view);
+            removeImageView = view.findViewById(R.id.remove_button);
         }
 
     }

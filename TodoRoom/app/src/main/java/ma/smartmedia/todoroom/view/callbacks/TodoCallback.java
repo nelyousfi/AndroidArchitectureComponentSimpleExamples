@@ -8,4 +8,5 @@ import ma.smartmedia.todoroom.db.entity.TodoEntity;
 
 public interface TodoCallback {
     void onClick(TodoEntity todo);
+    void onDelete(TodoEntity todo);
 }

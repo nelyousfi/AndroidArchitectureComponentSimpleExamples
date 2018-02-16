@@ -16,7 +16,7 @@ import ma.smartmedia.todoroom.db.entity.TodoEntity;
 /**
  * Created by Dalvik on 16/02/2018.
  */
-@Database(entities = {CategoryEntity.class, TodoEntity.class}, version = 2)
+@Database(entities = {CategoryEntity.class, TodoEntity.class}, version = 4)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase instance;

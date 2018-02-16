@@ -24,6 +24,7 @@ public class TodoEntity implements Todo {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String title;
+    private boolean isDone;
     private int categoryId;
 
     public void setId(int id) {
@@ -41,6 +42,15 @@ public class TodoEntity implements Todo {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    @Override
+    public boolean isDone() {
+        return isDone;
+    }
+
+    public void setDone(boolean done) {
+        isDone = done;
     }
 
     @Override
