@@ -11,22 +11,26 @@ import java.util.List;
  * Created by Dalvik on 11/02/2018.
  */
 
-public class MyConverter implements LifecycleObserver {
+public class MyConverterFinal implements LifecycleObserver {
 
     private List<Currency> currencies;
     private ConverterCallback callback;
+    private Lifecycle lifecycle;
 
     public static final String TAG = "Naoufal";
 
-    public MyConverter(ConverterCallback callback) {
+    public MyConverterFinal(Lifecycle lifecycle, ConverterCallback callback) {
         currencies = DummyCurrencies.generateDummyCurrencies();
+        this.lifecycle = lifecycle;
         this.callback = callback;
     }
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_START)
     public void onStart() {
         Log.d(TAG, "onStart()");
     }
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
     public void onStop() {
         Log.d(TAG, "onStop()");
     }
@@ -41,13 +45,15 @@ public class MyConverter implements LifecycleObserver {
             public void run() {
                 try {
                     Thread.sleep(3000);
-                } catch (InterruptedException e) {
+                } catch(InterruptedException e) {
 
                 }
-                for (Currency currency : currencies) {
+                for (Currency currency: currencies) {
                     currency.setValue(dollarValue * currency.getOneDollarValue());
                 }
-                callback.onConvert();
+                if (lifecycle.getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
+                    callback.onConvert();
+                }
             }
         }).start();
     }

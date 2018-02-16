@@ -11,20 +11,19 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
-import java.util.List;
-
-public class ConverterActivity extends AppCompatActivity implements ConverterCallback {
+public class ConverterActivityFinal extends AppCompatActivity implements ConverterCallback {
 
     private RecyclerView currenciesRecyclerView;
     private CurrenciesAdapter currenciesAdapter;
-    private MyConverter myConverter;
+    private MyConverterFinal myConverter;
     private ProgressBar loadingProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_converter);
-        myConverter = new MyConverter(this);
+        myConverter = new MyConverterFinal(getLifecycle(), this);
+        getLifecycle().addObserver(myConverter);
         initView();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
